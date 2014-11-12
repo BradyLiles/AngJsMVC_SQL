@@ -1,0 +1,49 @@
+﻿@model IEnumerable<egDotNetMVC.Models.Courses.CourseVm>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section JavascriptInHead
+{
+    <script src="~/ng_scripts/Courses/courses-controller.js"></script>
+    <script type="text/javascript">
+        var myModel = @Html.Raw(Model)
+        @*registrationModule.factory("bootstrappedCourses", function() {
+            return {
+                courses: @Html.Raw(Model)
+            };
+        });*@
+    </script>
+}
+
+@foreach (var item in Model)
+{
+    @Html.DisplayFor(m => item.Course)
+}
+    
+<div class="container">
+    <div class="row">
+        <div class="span10">
+            <h2>Courses</h2>
+        </div>
+    </div>
+    <div class="row" ng-controller="CoursesController">
+        <div class="span10">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Courses</th>
+                        <th>Course Name</th>
+                        <th>Instructor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="course in courses">
+                        <td>{{course.course}}</td>
+                        <td>{{course.name}}</td>
+                        <td>{{course.instructor}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
